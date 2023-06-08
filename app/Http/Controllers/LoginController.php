@@ -24,7 +24,7 @@ class LoginController extends Controller
         return $this->authenticated($request, $user);
     }
 
-    public function show(): View
+    public function show()
     {
         if (Auth::check()) {
             return redirect()->to('/home');
