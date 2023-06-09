@@ -17,9 +17,6 @@ class DeleteAccountController extends Controller
     {
         $user = User::find(Auth::id());
 
-        // $out = new \Symfony\Component\Console\Output\ConsoleOutput();
-        // $out->writeln($request->submitbutton);
-
         if ($request->submitbutton == 'confirm') {
             $user->delete();
 
