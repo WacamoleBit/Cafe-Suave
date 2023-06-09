@@ -11,7 +11,7 @@
     </div>
 
     <div class="container-fluid">
-        <form action="/product" method="GET">
+        <form action="/product/create" method="GET">
             <button class="btn btn-primary float-end mb-3" type="submit">
                 Nuevo producto
             </button>
@@ -35,12 +35,13 @@
                     <td> {{$product->quantity}} </td>
                     <td> {{$product->measure}} </td>
                     <td>
-                        <form action="" method="GET">
+                        <form action="/product/{{$product->id}}/edit" method="GET">
+                            @csrf
                             <button class="btn btn-warning float-end" type="submit">Editar</button>
                         </form>
                     </td>
                     <td>
-                        <form action="" method="GET">
+                        <form action="/product/{{$product->id}}" method="GET">
                             <button class="btn btn-info float-end" type="submit">Detalles</button>
                         </form>
                     </td>
