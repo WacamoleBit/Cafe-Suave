@@ -14,7 +14,7 @@ class RegisterController extends Controller
     {
         $user = User::create($request->validated());
 
-        return redirect()->to('/login')->with("Éxito", "Se creó el usuario con éxito");;
+        return redirect()->to('/login')->with("Success", "Se creó el usuario con éxito");
     }
 
     public function show(): View

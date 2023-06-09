@@ -6,7 +6,7 @@
     <div class="container w-25 border py-4">
         <form action="/user/edit" method="GET">
             @csrf
-            <h1>Mis datos</h1>
+            <h1 class="d-flex gap-2 justify-content-center">Mis datos</h1>
             <div class="form-group mb-3">
                 <label for="nombres">Nombre(s)</label>
                 <input type="text" name="first_name" id="nombres" value="{{ $user->first_name }}" class="form-control" disabled placeholder="Nombre">
@@ -29,25 +29,13 @@
             </div>
         </form>
     </div>
-    <!-- <div class="container w-25 border py-4">
-        <form action="/users" method="post">
-            @method('DELETE')
-            @csrf
-            <h2>Cambiar contraseña</h2>
-            <div class="d-grid gap-2">
-                <button type="submit" class="btn btn-secondary">Cambiar contraseña</button>
-            </div>
-        </form>
-        <a class="" href="Borrar"></a>
-    </div> -->
-    <!-- <div class="container w-25 border py-4">
-        <form action="/user" method="post">
-            @method('DELETE')
+    <div class="container w-25 border py-4">
+        <form action="/user/destroy" method="GET">
             @csrf
             <h2>Eliminar cuenta</h2>
             <div class="d-grid gap-2">
                 <button type="submit" class="btn btn-danger">Eliminar cuenta</button>
             </div>
         </form>
-    </div> -->
+    </div>
 @endsection

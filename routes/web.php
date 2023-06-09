@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DeleteAccountController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
@@ -42,4 +43,6 @@ Route::get('/user/edit', [UserController::class, 'edit']);
 
 Route::put('/user', [UserController::class, 'update']);
 
-Route::delete('/user', [UserController::class, 'destroy']);
+Route::get('/user/destroy', [DeleteAccountController::class, 'show']);
+
+Route::delete('/user', [DeleteAccountController::class, 'destroy']);

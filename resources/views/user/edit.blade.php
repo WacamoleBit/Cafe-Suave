@@ -7,7 +7,7 @@
         <form action="/user" method="POST">
             @method('PUT')
             @csrf
-            <h1>Mis datos</h1>
+            <h1 class="d-flex gap-2 justify-content-center">Mis datos</h1>
             <div class="form-group mb-3">
                 <label for="nombres">Nombre(s)</label>
                 <input type="text" name="first_name" id="nombres" value="{{ $user->first_name }}" class="form-control" placeholder="Nombre">

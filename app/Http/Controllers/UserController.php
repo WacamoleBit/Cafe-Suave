@@ -46,13 +46,4 @@ class UserController extends Controller
 
         return view('user.edit', ['user' => $user]);
     }
-
-    public function destroy()
-    {
-        $user = User::find(Auth::id());
-
-        $user->delete();
-
-        return redirect()->to('/home');
-    }
 }
