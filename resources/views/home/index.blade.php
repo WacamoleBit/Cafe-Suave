@@ -7,6 +7,9 @@
             <div class="offcanvas offcanvas-end" id="navbarNav">
                 <ul class="navbar-nav nav justify-content-end">
                     <li class="nav-item">
+                        <a class="nav-link" href="/products">Menú</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="/user">Perfil</a>
                     </li>
                     <li class="nav-item">
