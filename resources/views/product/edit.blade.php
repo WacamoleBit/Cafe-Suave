@@ -13,7 +13,6 @@
                 <input type="text" name="name" id="nombre" class="form-control" placeholder="Nombre" value="{{$product->name}}">
             </div>
             <div class="form-group mb-3">
-                <!-- <label for="descripcion">Descripción</label><br> -->
                 <div class="form-floating">
                     <textarea class="form-control" name="description" id="descripcion" style="height: 100px">{{$product->description}}</textarea>
                     <label for="floatingTextarea2">Descripción</label>

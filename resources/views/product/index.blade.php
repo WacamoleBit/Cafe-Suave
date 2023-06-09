@@ -46,8 +46,7 @@
                         </form>
                     </td>
                     <td>
-                        <form action="" method="POST">
-                            @method('DELETE')
+                        <form action="/product/{{$product->id}}/delete" method="GET">
                             @csrf
                             <button type="submit" class="btn btn-danger btn sm float-end">Eliminar</button>
                         </form>

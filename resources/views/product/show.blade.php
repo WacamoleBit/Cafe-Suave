@@ -36,4 +36,13 @@
             </div>
         </form>
     </div>
+    <div class="container w-25 border py-4">
+        <form action="/product/{{$product->id}}/delete" method="GET">
+            @csrf
+            <h2>Eliminar cuenta</h2>
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-danger">Eliminar producto</button>
+            </div>
+        </form>
+    </div>
 @endsection

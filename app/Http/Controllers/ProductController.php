@@ -86,6 +86,26 @@ class ProductController extends Controller
 
         $product->save();
 
+        return redirect()->to('/products')->with('Success', 'Producto actualizado con éxito');
+    }
+
+    public function delete($id)
+    {
+        $product = Product::find($id);
+
+        return view('product.destroy', ['product' => $product]);
+    }
+
+    public function destroy(Request $request, $id)
+    {
+        $product = Product::find($id);
+        
+        if ($request->submitbutton == 'confirm') {
+            $product->delete();
+
+            return redirect()->to('/products')->with('Success', 'Producto eliminado del inventario con éxito');
+        }
+        
         return redirect()->to('/products');
     }
 }
