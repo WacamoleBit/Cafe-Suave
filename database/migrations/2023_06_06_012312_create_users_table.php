@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string("username", 24)->unique();
             $table->string("password");
             $table->timestamp("email_verified_at")->nullable();
+            $table->boolean('admin');
             $table->rememberToken();
             $table->timestamps();
         });

@@ -14,13 +14,15 @@ class UserController extends Controller
     {
         $user = Auth::user();
 
+        if($user->admin) {
+            return view('admin.show', ['user' => $user]);
+        }
+        
         return view('user.show', ['user' => $user]);
     }
 
     public function update(Request $request)
     {
-        $out = new \Symfony\Component\Console\Output\ConsoleOutput();
-        $out->writeln('update');
         $user = User::find(Auth::id());
         
         $request->validate([
@@ -37,12 +39,20 @@ class UserController extends Controller
 
         $user->save();
 
-        return view('user.edit', ['user' => $user]);
+        if (!empty($user->admin) && $user->admin) {
+            return view('admin.show', ['user' => $user]);
+        }
+
+        return view('user.show', ['user' => $user]);
     }
 
     public function edit()
     {
         $user = User::find(Auth::id());
+
+        if (!empty($user->admin) && $user->admin) {
+            return view('admin.edit', ['user' => $user]);
+        }
 
         return view('user.edit', ['user' => $user]);
     }
