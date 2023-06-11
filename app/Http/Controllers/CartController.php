@@ -58,33 +58,22 @@ class CartController extends Controller
 
     public function destroy(Request $request)
     {
-        $out = new \Symfony\Component\Console\Output\ConsoleOutput();
-        $out->writeln("Hello from Terminal");
-        // $index = $request->id;
-
         $productBase = Product::find($request->id);
 
         $cart = session()->get('cart', []);
 
-        foreach ($cart as $product) {
-            $out->writeln($product);
-        }
-
         foreach ($cart as $key => $product) {
             if ($product['id'] == $request->id) {
                 $cart[$key]['quantity'] -= $productBase->quantity;
-                // $product['quantity'] 
 
-                if ($product['quantity'] <= 0) {
+                if ($cart[$key]['quantity'] < 1) {
                     unset($cart[$key]);
                 }
 
                 break;
             }
         }
-
-        // $out->writeln($cart[1]['id']); //[objeto en lista][indice]
-
+        
         session()->put('cart', $cart);
 
         return redirect()->to('/cart');
