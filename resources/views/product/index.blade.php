@@ -1,12 +1,11 @@
 @extends('layout.app')
 
-@extends('layout.navbar.authnavbar')
+@extends('layout.navbar.adminnavbar')
 
 @section('content')
     <div class="jumbotron jumbotron-fluid p-1">
         <div class="container-fluid">
-            <h1 class="display-1">Sección de alumnos</h1>
-            <p class="lead">En esta sección se muestran los datos de los alumnos en una tabla.</p>
+            <h1 class="display-1">Inventario de productos</h1>
         </div>
     </div>
 
@@ -24,6 +23,7 @@
                     <th>Precio</th>
                     <th>Cantidad</th>
                     <th>Medida</th>
+                    <th>Stock</th>
                     <th colspan="3">Opciones</th>
                 </tr>
             </thead>
@@ -31,9 +31,10 @@
                 @foreach($products as $product)
                 <tr>
                     <td> {{$product->name}} </td>
-                    <td> {{$product->price}} </td>
+                    <td> {{$product->price}} Pesos</td>
                     <td> {{$product->quantity}} </td>
                     <td> {{$product->measure}} </td>
+                    <td> {{$product->stock}} </td>
                     <td>
                         <form action="/product/{{$product->id}}/edit" method="GET">
                             @csrf

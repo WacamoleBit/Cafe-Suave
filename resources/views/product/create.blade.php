@@ -28,7 +28,11 @@
             </div>
             <div class="form-group mb-3">
                 <label for="medida">Medida</label>
-                <input type="text" name="measure" id="medida" class="form-control" placeholder="Nombre">
+                <input type="text" name="measure" id="medida" class="form-control" placeholder="Pieza - Taza - Mililitros - Gramos">
+            </div>
+            <div class="form-group mb-3">
+                <label for="stock">Stock</label>
+                <input type="number" name="stock" id="stock" class="form-control" placeholder="Stock">
             </div>
 
             <button type="submit" class="btn btn-primary">Guardar</button>

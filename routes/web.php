@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\DeleteAccountController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RegisterController;
@@ -62,3 +63,15 @@ Route::put('/product/{id}', [ProductController::class, 'update']);
 Route::get('/product/{id}/delete', [ProductController::class, 'delete']);
 
 Route::delete('/product/{id}', [ProductController::class, 'destroy']);
+
+Route::get('/menu', [MenuController::class, 'index']);
+
+Route::get('/cart', [CartController::class, 'index']);
+
+Route::post('/cart', [CartController::class, 'add']);
+
+Route::delete('/cart', [CartController::class, 'destroy']);
+
+Route::get('/cart/success', [CartController::class, 'success']);
+
+Route::post('/cart/pay', [CartController::class, 'pay']);

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->double('price');
             $table->integer('quantity');
             $table->string('measure');
+            $table->integer('stock');
             $table->timestamps();
         });
     }
