@@ -30,6 +30,10 @@
                 <label for="medida">Medida</label>
                 <input type="text" name="measure" id="medida" class="form-control" placeholder="Nombre" value="{{$product->measure}}">
             </div>
+            <div class="form-group mb-3">
+                <label for="stock">Stock</label>
+                <input type="number" name="stock" id="stock" class="form-control" placeholder="Stock" value="{{$product->stock}}">
+            </div>
 
             <div class="d-grid gap-2">
                 <button type="submit" class="btn btn-primary">Editar producto</button>

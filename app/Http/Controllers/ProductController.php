@@ -21,19 +21,13 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        $out = new \Symfony\Component\Console\Output\ConsoleOutput();
-        $out->writeln($request->name);
-        $out->writeln($request->price);
-        $out->writeln($request->quantity);
-        $out->writeln($request->measure);
-        $out->writeln($request->description);
-
         $request->validate([
             'name' => 'required|string',
             'description' => 'required|string',
             'price' => 'required|numeric',
             'quantity' => 'required|numeric',
-            'measure' => 'required|string'
+            'measure' => 'required|string',
+            'stock' => 'required|numeric'
         ]);
 
         $product = new Product;
@@ -42,6 +36,7 @@ class ProductController extends Controller
         $product->price = $request->price;
         $product->quantity = $request->quantity;
         $product->measure = $request->measure;
+        $product->stock = $request->stock;
 
         $product->save();
 
@@ -65,9 +60,6 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         $product = Product::find($id);
-
-        $out = new \Symfony\Component\Console\Output\ConsoleOutput();
-        $out->writeln($request->description);
         
         $request->validate([
             'name' => 'required|string',
