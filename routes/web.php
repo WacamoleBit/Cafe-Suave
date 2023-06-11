@@ -69,3 +69,5 @@ Route::get('/menu', [MenuController::class, 'index']);
 Route::get('/cart', [CartController::class, 'index']);
 
 Route::post('/cart', [CartController::class, 'add']);
+
+Route::delete('/cart', [CartController::class, 'destroy']);

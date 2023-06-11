@@ -9,12 +9,12 @@ class CartController extends Controller
 {
     public function index()
     {
-        if (!session()->has('cart')) {
+        if (!session()->has('cart') || count(session('cart', [])) == 0) {
             return view('cart.empty');
         }
 
         $cart = session()->get('cart', []);
-        
+
         $products = collect($cart)->groupBy('id')->map(function ($items) {
             return [
                 'id' => $items->first()['id'],
@@ -25,7 +25,6 @@ class CartController extends Controller
                 'measure' => $items->first()['measure']
             ];
         })->values()->all();
-        
 
         return view('cart.index', ['products' => $products]);
     }
@@ -51,6 +50,40 @@ class CartController extends Controller
             ];
         }
         $cart[] = $inCart; //???
+
+        session()->put('cart', $cart);
+
+        return redirect()->to('/cart');
+    }
+
+    public function destroy(Request $request)
+    {
+        $out = new \Symfony\Component\Console\Output\ConsoleOutput();
+        $out->writeln("Hello from Terminal");
+        // $index = $request->id;
+
+        $productBase = Product::find($request->id);
+
+        $cart = session()->get('cart', []);
+
+        foreach ($cart as $product) {
+            $out->writeln($product);
+        }
+
+        foreach ($cart as $key => $product) {
+            if ($product['id'] == $request->id) {
+                $cart[$key]['quantity'] -= $productBase->quantity;
+                // $product['quantity'] 
+
+                if ($product['quantity'] <= 0) {
+                    unset($cart[$key]);
+                }
+
+                break;
+            }
+        }
+
+        // $out->writeln($cart[1]['id']); //[objeto en lista][indice]
 
         session()->put('cart', $cart);
 

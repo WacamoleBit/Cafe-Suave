@@ -29,8 +29,9 @@
                     <td> {{$product['quantity']}} </td>
                     <td> {{$product['measure']}} </td>
                     <td>
-                        <form action="" method="POST">
+                        <form action="/cart" method="POST">
                             @csrf
+                            @method('DELETE')
                             <input type="hidden" name="id" value="{{$product['id']}}">
                             <button class="btn btn-danger float-end" type="submit">Eliminar</button>
                         </form>
