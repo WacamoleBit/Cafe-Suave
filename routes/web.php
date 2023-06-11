@@ -71,3 +71,7 @@ Route::get('/cart', [CartController::class, 'index']);
 Route::post('/cart', [CartController::class, 'add']);
 
 Route::delete('/cart', [CartController::class, 'destroy']);
+
+Route::get('/cart/success', [CartController::class, 'success']);
+
+Route::post('/cart/pay', [CartController::class, 'pay']);

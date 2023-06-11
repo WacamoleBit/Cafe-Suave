@@ -14,6 +14,7 @@ class CartController extends Controller
         }
 
         $cart = session()->get('cart', []);
+        $total = 0;
 
         $products = collect($cart)->groupBy('id')->map(function ($items) {
             return [
@@ -26,7 +27,11 @@ class CartController extends Controller
             ];
         })->values()->all();
 
-        return view('cart.index', ['products' => $products]);
+        foreach ($cart as $product) {
+            $total += ($product['price']);
+        }
+
+        return view('cart.index', ['products' => $products, 'total' => $total]);
     }
 
     public function add(Request $request)
@@ -73,9 +78,31 @@ class CartController extends Controller
                 break;
             }
         }
-        
+
         session()->put('cart', $cart);
 
         return redirect()->to('/cart');
+    }
+
+    public function pay()
+    {
+        $cart = session()->get('cart', []);
+        
+        foreach ($cart as $key => $item) {
+            $product = Product::find($item['id']);
+            $product->stock -= 1;
+            $product->save();
+
+            unset($cart[$key]);
+        }
+
+        session()->put('cart', $cart);
+
+        return redirect()->to('/cart/success');
+    }
+
+    public function success()
+    {
+        return view('cart.success');
     }
 }
