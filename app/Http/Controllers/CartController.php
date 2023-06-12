@@ -48,7 +48,7 @@ class CartController extends Controller
             }
         }
 
-        if ($total <= $product->stock) {
+        if ($total < $product->stock) {
             $cart[] = $product;
         }
 
