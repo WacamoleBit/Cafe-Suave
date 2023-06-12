@@ -36,25 +36,19 @@ class CartController extends Controller
 
     public function add(Request $request)
     {
-        $search = Product::find($request->id);
-
+        $product = Product::find($request->id);
         $cart = session()->get('cart', []);
+        $total = 0;
 
-        $inCart = collect($cart)->firstWhere('id', $search->id);
-
-        if ($inCart) {
-            $inCart['quantity']; //???
-        } else {
-            $inCart = [
-                'id' => $search->id,
-                'name' => $search->name,
-                'description' => $search->description,
-                'price' => $search->price,
-                'quantity' => $search->quantity,
-                'measure' => $search->measure,
-            ];
+        foreach ($cart as $product) {
+            if ($product['id'] == $product->id) {
+                $total += 1;
+            }
         }
-        $cart[] = $inCart; //???
+
+        if ($total <= $product->stock) {
+            $cart[] = $product;
+        }
 
         session()->put('cart', $cart);
 
@@ -63,17 +57,11 @@ class CartController extends Controller
 
     public function destroy(Request $request)
     {
-        $productBase = Product::find($request->id);
-
         $cart = session()->get('cart', []);
 
         foreach ($cart as $key => $product) {
             if ($product['id'] == $request->id) {
-                $cart[$key]['quantity'] -= $productBase->quantity;
-
-                if ($cart[$key]['quantity'] < 1) {
-                    unset($cart[$key]);
-                }
+                unset($cart[$key]);
 
                 break;
             }
@@ -87,7 +75,7 @@ class CartController extends Controller
     public function pay()
     {
         $cart = session()->get('cart', []);
-        
+
         foreach ($cart as $key => $item) {
             $product = Product::find($item['id']);
             $product->stock -= 1;
