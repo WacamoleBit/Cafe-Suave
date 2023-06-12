@@ -39,9 +39,11 @@ class CartController extends Controller
         $product = Product::find($request->id);
         $cart = session()->get('cart', []);
         $total = 0;
-
-        foreach ($cart as $product) {
-            if ($product['id'] == $product->id) {
+        $out = new \Symfony\Component\Console\Output\ConsoleOutput();
+        
+        foreach ($cart as $item) {
+            if ($item['id'] == $product->id) {
+                $out->writeln($product);
                 $total += 1;
             }
         }

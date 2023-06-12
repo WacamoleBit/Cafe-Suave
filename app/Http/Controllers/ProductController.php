@@ -66,7 +66,8 @@ class ProductController extends Controller
             'description' => 'required|string',
             'price' => 'required|numeric',
             'quantity' => 'required|numeric',
-            'measure' => 'required|string'
+            'measure' => 'required|string',
+            'quantity' => 'required|numeric'
         ]);
         
 
@@ -75,6 +76,7 @@ class ProductController extends Controller
         $product->price = $request->price;
         $product->quantity = $request->quantity;
         $product->measure = $request->measure;
+        $product->stock = $request->stock;
 
         $product->save();
 
